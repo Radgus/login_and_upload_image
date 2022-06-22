@@ -1,16 +1,17 @@
 import React from "react";
 import styled from "styled-components";
+import Header from '../Header';
 
 const Container = styled.div`
-  margin: 0 5%;
-  background-color: beige;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  height: inherit;
 `
 
 const Layout = ({ children }) => {
   return (
     <Container>
+      <Header/>
       { children }
     </Container>
   )
