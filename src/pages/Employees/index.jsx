@@ -4,6 +4,7 @@ import useGetter from "../../hooks/useGetter";
 import Table from 'react-bootstrap/Table'
 import { TitleH1 } from "../styles/Titles";
 import searchIcon from '../../resources/images/search-icon-5.png';
+import FormSection from "./FormSection";
 
 
 const Container = styled.div`
@@ -57,13 +58,13 @@ const Employees = () => {
     }
   },[employees]);
 
-  useEffect(()=>{
-    console.log('employeesList',employeesList);
-  },[employeesList]);
+  // useEffect(()=>{
+  //   console.log('employeesList',employeesList);
+  // },[employeesList]);
 
-  useEffect(()=>{
-    console.log('counter',counter);
-  },[counter]);
+  // useEffect(()=>{
+  //   console.log('counter',counter);
+  // },[counter]);
 
   const filteredEmployees = () => {
     return employeesList.slice(currentPage, currentPage+10);
@@ -91,7 +92,7 @@ const Employees = () => {
     const searchEmployees = employees.filter((employee) => {
       return employee.name.toLowerCase().includes(value.toLowerCase()) || employee.last_name.toLowerCase().includes(value.toLowerCase());
     });
-    console.log('searchEmployees: ', searchEmployees);
+    // console.log('searchEmployees: ', searchEmployees);
     setEmployeesList(searchEmployees);
   }
 
@@ -123,12 +124,13 @@ const Employees = () => {
         <tbody>
           {
             filteredEmployees().map((employee) => {
+
               return (
                 <tr key={employee.id}>
                   <Td>{employee.id}</Td>
                   <Td>{employee.name}</Td>
                   <Td>{employee.last_name}</Td>
-                  <Td>{employee.birthday}</Td>
+                  <Td>{new Date(employee.birthday).toLocaleDateString()}</Td>
                 </tr>
               );
             })
@@ -155,6 +157,8 @@ const Employees = () => {
           </button>
         }
       </div>
+      <br />
+      <FormSection/>
     </Container>
   )
   
