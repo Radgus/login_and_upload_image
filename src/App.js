@@ -10,12 +10,12 @@ import Layout from './components/Layout';
 import './App.css';
 
 const App = () => {
-  const [employees, setEmployees] = useState([]);
+  const [globalState, setGlobalState] = useState([]);
   // const [upload, uploadFuntion] = useState([]);
 
   return (
     <StateContext.Provider 
-      value={{employees, setEmployees}}
+      value={{globalState, setGlobalState}}
     >
       <BrowserRouter>
         <Layout>

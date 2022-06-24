@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { useDropzone } from "react-dropzone";
 import dropFileImage from "../../resources/images/drop-files.jpg";
 import closeIcon from "../../resources/images/close.png";
 import mew from "./images/initial.jpg";
 import { TitleH1 } from "../styles/Titles";
+import StateContext from '../../state/stateContext';
 
 
 const Container = styled.div`
@@ -53,6 +54,8 @@ const ImageContainer = styled.div`
 `;
 
 const Upload = () => {
+  const {globalState, setGlobalState} = useContext(StateContext);
+
   const [files, setFiles] = useState([]);
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -72,7 +75,7 @@ const Upload = () => {
       <img src={file.preview} style={{width:"200px"}} alt="preview" />
     </ImgCard>
   ))
-
+    console.log('globalState: ',globalState);
   return (
     <Container>
       <div {...getRootProps()}>
@@ -86,11 +89,11 @@ const Upload = () => {
       
       <TitleH1>Imagenes almacenadas</TitleH1>
       <ImageContainer>
-        <img src={mew} alt="" className="card"/>
-        <img src={mew} alt="" className="card" />
-        <img src={mew} alt="" className="card" />
-        <img src={mew} alt="" className="card" />
-        <img src={mew} alt="" className="card" />
+        {
+          globalState?.images?.map(image => (
+            <img src={mew} alt="" className="card"/>
+          ))
+        }
       </ImageContainer>
       
     </Container>

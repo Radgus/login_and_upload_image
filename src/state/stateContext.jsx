@@ -2,8 +2,10 @@ import React from 'react';
 
 
 const StateContext = React.createContext({
-  employees: [],
-  setEmployees: () => {},
+  globalState: {
+    images:  ['initial.jpg', 'descarga.jpg']
+  },
+  setGlobalState: () => {},
 });
 
 export default StateContext;
